@@ -1,0 +1,76 @@
+# Default values for aws-service-operator
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+image:
+  repository: awsserviceoperator/aws-service-operator
+  tag: v0.0.1-alpha4
+  pullPolicy: IfNotPresent
+  #pullSecret: your-k8-secet-to-use (not deployed by chart, but you can reference existing one)
+
+## App config
+operator:
+  accountId: "12914999043"
+  #bucket: aws-operator
+  # clusterName: 
+  #config: "$HOME/.aws-operator.yaml"
+  #kubeconfig:
+  #logfile:
+  loglevel: info
+  # region: 
+  # resources: s3bucket,sqsqueues
+
+## Pod Affinity
+affinity: {}
+
+## Extra args to pass to aws-service-operator
+extraArgs:
+   - --help
+
+## A list of additional environment variables
+extraEnv:
+  #- name: my_env
+  #  value: my_value
+
+## Additional Volumes and mounts
+extraVolumes:
+  #- hostPath:
+  #    path: /var/log
+  #  name: logs
+extraVolumeMounts:
+  #- name: logs
+  #  mountPath: /host/var/log
+  #  readOnly: true
+
+## Node Selector
+nodeSelector: {}
+  # env: addons
+
+## List of node taints to tolerate (requires Kubernetes >= 1.6)
+tolerations: []
+  # - key: env
+  #   operator: Equal
+  #   value: node
+
+
+## Pod Annotations
+podAnnotations: {}
+  # iam.amazonaws.com/role: k8s/aws-service-operator
+
+## Deployment replica count
+replicas: 1
+
+## RBAC roles and bindings
+rbac:
+  create: true
+  # Ignored if rbac.create is true
+  serviceAccountName: default
+
+## Pod Resources
+resources: {}
+  # requests:
+  #  memory: "128Mi"
+  #  cpu: "250m"
+  # limits:
+  #  memory: "500Mi"
+  #  cpu: "500m"
+
